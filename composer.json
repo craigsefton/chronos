@@ -1,0 +1,29 @@
+{
+  "name": "craigsefton/chronos",
+  "description": "Extensions to the standard PHP DateTime class.",
+  "keywords": ["php", "datetime", "date", "time", "chronos"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Craig Sefton",
+      "email": "craig@craigsefton.com",
+      "homepage": "http://github.com/craigsefton/chronos/",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "craig@craigsefton.com"
+  },
+  "require": {
+    "php": ">=5.2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "3.7.14"
+  },
+  "autoload": {
+    "psr-0": {
+      "Chronos": "src/",
+      "ChronosTests": "Tests/"
+    }
+  }
+}
