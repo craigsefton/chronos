@@ -22,3 +22,5 @@ This extends the default PHP DateTime class, and provides some additional
 functionality. All methods manipulate the current object, unless stipulated
 otherwise. In addition, all methods return the current object, so methods can
 be chained, if desired. For examples, look in the Tests folder.
+
+One import thing to note is that the default TimeZone for Chronos is UTC.
