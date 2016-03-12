@@ -38,7 +38,7 @@ Otherwise, usage of TimeZones works the same as the normal DateTime library.
 
 ## Start of week
 In addition, the library treats the starting day of a week to be Monday, and the
-end of the week to be Sunday. This is slightly different to how PHP normally
+end of the week to be Sunday.
 
 ```php
 use \Chronos\ChronosDateTime;
