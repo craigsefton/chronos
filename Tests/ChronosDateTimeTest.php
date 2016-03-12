@@ -13,6 +13,7 @@ class ChronosDateTimeTest extends PHPUnit_Framework_TestCase
     $this->assertEquals("2014-01-01 23:10:00", $date->format('Y-m-d H:i:s'));
   }
 
+
   public function testEndOfMinute() {
     $date = new Chronos\ChronosDateTime("2014-01-01 23:10:30");
     $date->endOfMinute();
@@ -398,6 +399,9 @@ class ChronosDateTimeTest extends PHPUnit_Framework_TestCase
   }
 
   public function testValidateDate() {
-
+    $valid = \Chronos\ChronosDateTime::validateDate('2012-02-30 12:12:12');
+    $this->assertFalse($valid);
+    $valid = \Chronos\ChronosDateTime::validateDate('14:77', 'H:i');
+    $this->assertFalse($valid);
   }
 }

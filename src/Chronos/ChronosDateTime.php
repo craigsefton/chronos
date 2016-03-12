@@ -24,6 +24,8 @@ use \DateTimeZone;
  */
 class ChronosDateTime extends \DateTime {
 
+  protected $defaultFormat = self::RSS;
+
   /**
    * Custom constructor. Defaults to UTC timezone if timezone isn't supplied.
    *
@@ -599,6 +601,33 @@ class ChronosDateTime extends \DateTime {
   public static function validateDate($date, $format='Y-m-d H:i:s') {
     $d = self::createFromFormat($format, $date);
     return $d && $d->format($format) == $date;
+  }
+
+  /**
+   * Convert ChronosDateTime to a string.
+   *
+   * @return string
+   */
+  public function __toString() {
+    return $this->format($this->defaultFormat);
+  }
+
+  /**
+   * Get the current default format.
+   *
+   * @return string
+   */
+  public function getDefaultFormat() {
+    return $this->defaultFormat;
+  }
+
+  /**
+   * Set a default format for printing ChronosDateTime objects.
+   *
+   * @param string $defaultFormat
+   */
+  public function setDefaultFormat($defaultFormat) {
+    $this->defaultFormat = $defaultFormat;
   }
 
 }
