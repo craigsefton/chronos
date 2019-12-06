@@ -5,7 +5,7 @@ namespace Chronos;
 /**
  * Trait ChronosTrait
  * @package Chronos
- * @method static ChronosInterface createFromFormat($format, $dateTimeString, $timezone=null)
+ * @method static ChronosInterface createFromFormat(string $format, string $dateTimeString, \DateTimeZone $timezone=null)
  */
 trait ChronosTrait
 {
@@ -26,7 +26,7 @@ trait ChronosTrait
      * @param int $microseconds
      * @return bool|ChronosInterface
      */
-    abstract public function setTime($hour, $minute, $second = 0, $microseconds = 0);
+    abstract public function setTime(int $hour, int $minute, int $second = 0, int $microseconds = 0);
 
     /**
      * @param string $format
@@ -46,7 +46,7 @@ trait ChronosTrait
      * @param int $day
      * @return false|ChronosInterface
      */
-    abstract public function setDate($year, $month, $day);
+    abstract public function setDate(int $year, int $month, int $day);
 
     /**
      * @static For a given string in a given format, validate whether or not it is
@@ -59,7 +59,7 @@ trait ChronosTrait
      * @param string $format The format of the date string we are validating. Default is Y-m-d H:i:s.
      * @return bool False if not a valid date time string, true if it is.
      */
-    public static function validate($dateTimeString, $format = self::MYSQL)
+    public static function validate(string $dateTimeString, string $format = self::MYSQL) : bool
     {
         $d = static::createFromFormat($format, $dateTimeString);
         return $d && $d->format($format) === $dateTimeString;
@@ -75,7 +75,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function startOfMinute()
+    public function startOfMinute() : ChronosInterface
     {
         return $this->setTime((int)$this->format('G'), (int)$this->format('i'));
     }
@@ -85,7 +85,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function endOfMinute()
+    public function endOfMinute() : ChronosInterface
     {
         return $this->setTime((int)$this->format('G'), (int)$this->format('i'), 59);
     }
@@ -95,7 +95,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function previousMinute()
+    public function previousMinute() : ChronosInterface
     {
         return $this->modify('-1 minute');
     }
@@ -105,7 +105,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function nextMinute()
+    public function nextMinute() : ChronosInterface
     {
         return $this->modify('+1 minute');
     }
@@ -120,7 +120,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function startOfHour()
+    public function startOfHour() : ChronosInterface
     {
         return $this->setTime((int)$this->format('G'), 0);
     }
@@ -130,7 +130,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function endOfHour()
+    public function endOfHour() : ChronosInterface
     {
         return $this->setTime((int)$this->format('G'), 59, 59);
     }
@@ -140,7 +140,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function previousHour()
+    public function previousHour() : ChronosInterface
     {
         return $this->modify('-1 hour');
     }
@@ -150,7 +150,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function nextHour()
+    public function nextHour() : ChronosInterface
     {
         return $this->modify('+1 hour');
     }
@@ -165,7 +165,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function startOfDay()
+    public function startOfDay() : ChronosInterface
     {
         return $this->setTime(0, 0);
     }
@@ -175,7 +175,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function endOfDay()
+    public function endOfDay() : ChronosInterface
     {
         return $this->setTime(23, 59, 59);
     }
@@ -185,7 +185,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function previousDay()
+    public function previousDay() : ChronosInterface
     {
         return $this->modify('-1 day');
     }
@@ -195,7 +195,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function nextDay()
+    public function nextDay() : ChronosInterface
     {
         return $this->modify('+1 day');
     }
@@ -210,7 +210,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function previousWeek()
+    public function previousWeek() : ChronosInterface
     {
         return $this->modify('-1 week');
     }
@@ -220,7 +220,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function nextWeek()
+    public function nextWeek() : ChronosInterface
     {
         return $this->modify('+1 week');
     }
@@ -230,7 +230,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function firstDayOfWeek()
+    public function firstDayOfWeek() : ChronosInterface
     {
         $currentDay = (int)$this->format('w');
         $difference = $currentDay >= $this->startDayOfWeek
@@ -244,7 +244,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function lastDayOfWeek()
+    public function lastDayOfWeek() : ChronosInterface
     {
         return $this->firstDayOfWeek()->modify('+6 days');
     }
@@ -259,7 +259,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function firstDayOfMonth()
+    public function firstDayOfMonth() : ChronosInterface
     {
         return $this->setDate($this->format('Y'), $this->format('m'), 1);
     }
@@ -269,7 +269,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function lastDayOfMonth()
+    public function lastDayOfMonth() : ChronosInterface
     {
         return $this->setDate($this->format('Y'), $this->format('m'), $this->format('t'));
     }
@@ -279,7 +279,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function firstDayOfPreviousMonth()
+    public function firstDayOfPreviousMonth() : ChronosInterface
     {
         return $this->lastDayOfPreviousMonth()->firstDayOfMonth();
     }
@@ -289,7 +289,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function lastDayOfPreviousMonth()
+    public function lastDayOfPreviousMonth() : ChronosInterface
     {
         return $this->firstDayOfMonth()->modify('-1 day');
     }
@@ -299,7 +299,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function firstDayOfNextMonth()
+    public function firstDayOfNextMonth() : ChronosInterface
     {
         return $this->lastDayOfMonth()->modify('+1 day');
     }
@@ -309,7 +309,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function lastDayOfNextMonth()
+    public function lastDayOfNextMonth() : ChronosInterface
     {
         return $this->firstDayOfNextMonth()->lastDayOfMonth();
     }
@@ -324,7 +324,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function previousYear()
+    public function previousYear() : ChronosInterface
     {
         return $this->modify('-1 year');
     }
@@ -334,7 +334,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function nextYear()
+    public function nextYear() : ChronosInterface
     {
         return $this->modify('+1 year');
     }
@@ -344,7 +344,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function firstDayOfYear()
+    public function firstDayOfYear() : ChronosInterface
     {
         return $this->setDate($this->format('Y'), 1, 1);
     }
@@ -354,7 +354,7 @@ trait ChronosTrait
      *
      * @return ChronosInterface
      */
-    public function lastDayOfYear()
+    public function lastDayOfYear() : ChronosInterface
     {
         return $this->setDate($this->format('Y'), 12, 31);
     }
@@ -364,7 +364,7 @@ trait ChronosTrait
      *
      * @return string
      */
-    public function getDefaultPrintFormat()
+    public function getDefaultPrintFormat() : string
     {
         return $this->defaultPrintFormat;
     }
@@ -373,9 +373,9 @@ trait ChronosTrait
      * Set a default format for printing static objects.
      *
      * @param string $defaultPrintFormat
-     * @return static
+     * @return ChronosInterface
      */
-    public function setDefaultPrintFormat($defaultPrintFormat)
+    public function setDefaultPrintFormat($defaultPrintFormat) : ChronosInterface
     {
         $this->defaultPrintFormat = $defaultPrintFormat;
         return $this;
@@ -384,9 +384,9 @@ trait ChronosTrait
     /**
      * @param int $startDayOfWeek
      * @throws \InvalidArgumentException if the start day of the week is invalid.
-     * @return static
+     * @return ChronosInterface
      */
-    public function setStartDayOfWeek($startDayOfWeek)
+    public function setStartDayOfWeek(int $startDayOfWeek) : ChronosInterface
     {
         if (!is_int($startDayOfWeek) || !array_key_exists($startDayOfWeek, ChronosInterface::DAYS_OF_WEEK)) {
             throw new \InvalidArgumentException(
@@ -402,7 +402,7 @@ trait ChronosTrait
      *
      * @return int
      */
-    public function getStartDayOfWeek()
+    public function getStartDayOfWeek() : int
     {
         return $this->startDayOfWeek;
     }
@@ -412,7 +412,7 @@ trait ChronosTrait
      *
      * @return string
      */
-    public function __toString()
+    public function __toString() : string
     {
         return $this->format($this->defaultPrintFormat);
     }

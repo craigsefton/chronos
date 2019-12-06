@@ -45,6 +45,7 @@ namespace Chronos;
  * @method ChronosDateTime nextYear()
  * @method ChronosDateTime firstDayOfYear()
  * @method ChronosDateTime lastDayOfYear()
+ * @method ChronosDateTime setDefaultPrintFormat($format)
  */
 class ChronosDateTime extends \DateTime implements ChronosInterface
 {
@@ -53,10 +54,10 @@ class ChronosDateTime extends \DateTime implements ChronosInterface
     /**
      * @param \DateTimeInterface $date
      * @param string $format
-     * @return ChronosInterface|static
+     * @return ChronosDateTime
      * @throws \Exception
      */
-    public static function convert(\DateTimeInterface $date, $format = ChronosInterface::MYSQL)
+    public static function convert(\DateTimeInterface $date, string $format = ChronosInterface::MYSQL) : ChronosInterface
     {
         return new static($date->format($format), $date->getTimezone());
     }

@@ -1,8 +1,10 @@
 <?php
 
+namespace ChronosTests;
+
 use Chronos\ChronosDateTimeImmutable;
 
-class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
+class ChronosDateTimeImmutableTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * ===========================================================================
@@ -12,9 +14,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testStartOfMinute()
+    public function testStartOfMinute() : void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-01 23:10:30');
+        $date = new ChronosDateTimeImmutable('2014-01-01 23:10:30');
         $returnDate = $date->startOfMinute();
         $this->assertEquals('2014-01-01 23:10:00', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
         $this->assertEquals('2014-01-01 23:10:30', $date->format(ChronosDateTimeImmutable::MYSQL));
@@ -23,9 +25,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testEndOfMinute()
+    public function testEndOfMinute() : void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-01 23:10:30');
+        $date = new ChronosDateTimeImmutable('2014-01-01 23:10:30');
         $returnDate = $date->endOfMinute();
         $this->assertEquals('2014-01-01 23:10:59', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
         $this->assertEquals('2014-01-01 23:10:30', $date->format(ChronosDateTimeImmutable::MYSQL));
@@ -34,9 +36,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testPreviousMinute()
+    public function testPreviousMinute() : void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-01 23:10:30');
+        $date = new ChronosDateTimeImmutable('2014-01-01 23:10:30');
         $returnDate = $date->previousMinute();
         $this->assertEquals('2014-01-01 23:09:30', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
         $this->assertEquals('2014-01-01 23:10:30', $date->format(ChronosDateTimeImmutable::MYSQL));
@@ -45,9 +47,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testNextMinute()
+    public function testNextMinute() : void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-01 23:10:30');
+        $date = new ChronosDateTimeImmutable('2014-01-01 23:10:30');
         $returnDate = $date->nextMinute();
         $this->assertEquals('2014-01-01 23:11:30', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
         $this->assertEquals('2014-01-01 23:10:30', $date->format(ChronosDateTimeImmutable::MYSQL));
@@ -61,9 +63,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testStartOfHour()
+    public function testStartOfHour(): void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-01 23:10:00');
+        $date = new ChronosDateTimeImmutable('2014-01-01 23:10:00');
         $returnDate = $date->startOfHour();
         $this->assertEquals('2014-01-01 23:00:00', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
         $this->assertEquals('2014-01-01 23:10:00', $date->format(ChronosDateTimeImmutable::MYSQL));
@@ -72,9 +74,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testEndOfHour()
+    public function testEndOfHour(): void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-01 23:10:00');
+        $date = new ChronosDateTimeImmutable('2014-01-01 23:10:00');
         $returnDate = $date->endOfHour();
         $this->assertEquals('2014-01-01 23:59:59', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
         $this->assertEquals('2014-01-01 23:10:00', $date->format(ChronosDateTimeImmutable::MYSQL));
@@ -83,9 +85,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testPreviousHour()
+    public function testPreviousHour(): void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-01 23:10:00');
+        $date = new ChronosDateTimeImmutable('2014-01-01 23:10:00');
         $returnDate = $date->previousHour();
         $this->assertEquals('2014-01-01 22:10:00', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
         $this->assertEquals('2014-01-01 23:10:00', $date->format(ChronosDateTimeImmutable::MYSQL));
@@ -94,9 +96,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testNextHour()
+    public function testNextHour(): void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-01 22:10:00');
+        $date = new ChronosDateTimeImmutable('2014-01-01 22:10:00');
         $returnDate = $date->nextHour();
         $this->assertEquals('2014-01-01 23:10:00', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
         $this->assertEquals('2014-01-01 22:10:00', $date->format(ChronosDateTimeImmutable::MYSQL));
@@ -110,9 +112,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testStartOfDay()
+    public function testStartOfDay(): void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-01 23:00:00');
+        $date = new ChronosDateTimeImmutable('2014-01-01 23:00:00');
         $returnDate = $date->startOfDay();
         $this->assertEquals('2014-01-01 00:00:00', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
         $this->assertEquals('2014-01-01 23:00:00', $date->format(ChronosDateTimeImmutable::MYSQL));
@@ -121,9 +123,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testEndOfDay()
+    public function testEndOfDay(): void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-01 23:00:00');
+        $date = new ChronosDateTimeImmutable('2014-01-01 23:00:00');
         $returnDate = $date->endOfDay();
         $this->assertEquals('2014-01-01 23:59:59', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
         $this->assertEquals('2014-01-01 23:00:00', $date->format(ChronosDateTimeImmutable::MYSQL));
@@ -132,9 +134,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testPreviousDay()
+    public function testPreviousDay(): void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-01 23:00:00');
+        $date = new ChronosDateTimeImmutable('2014-01-01 23:00:00');
         $returnDate = $date->previousDay();
         $this->assertEquals('2013-12-31 23:00:00', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
         $this->assertEquals('2014-01-01 23:00:00', $date->format(ChronosDateTimeImmutable::MYSQL));
@@ -143,9 +145,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testNextDay()
+    public function testNextDay(): void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-01 23:00:00');
+        $date = new ChronosDateTimeImmutable('2014-01-01 23:00:00');
         $returnDate = $date->nextDay();
         $this->assertEquals('2014-01-02 23:00:00', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
         $this->assertEquals('2014-01-01 23:00:00', $date->format(ChronosDateTimeImmutable::MYSQL));
@@ -159,9 +161,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testStartOfMonth()
+    public function testStartOfMonth(): void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-11 23:00:00');
+        $date = new ChronosDateTimeImmutable('2014-01-11 23:00:00');
         $returnDate = $date->firstDayOfMonth();
         $this->assertEquals('2014-01-01 23:00:00', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
     }
@@ -169,9 +171,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testEndOfMonth()
+    public function testEndOfMonth(): void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-11 23:00:00');
+        $date = new ChronosDateTimeImmutable('2014-01-11 23:00:00');
         $returnDate = $date->lastDayOfMonth();
         $this->assertEquals('2014-01-31 23:00:00', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
     }
@@ -179,9 +181,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testStartOfPreviousMonth()
+    public function testStartOfPreviousMonth(): void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-11 23:00:00');
+        $date = new ChronosDateTimeImmutable('2014-01-11 23:00:00');
         $returnDate = $date->firstDayOfPreviousMonth();
         $this->assertEquals('2013-12-01 23:00:00', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
     }
@@ -189,9 +191,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testEndOfPreviousMonth()
+    public function testEndOfPreviousMonth(): void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-11 23:00:00');
+        $date = new ChronosDateTimeImmutable('2014-01-11 23:00:00');
         $returnDate = $date->lastDayOfPreviousMonth();
         $this->assertEquals('2013-12-31 23:00:00', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
     }
@@ -199,9 +201,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testStartOfNextMonth()
+    public function testStartOfNextMonth(): void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-01 23:00:00');
+        $date = new ChronosDateTimeImmutable('2014-01-01 23:00:00');
         $returnDate = $date->firstDayOfNextMonth();
         $this->assertEquals('2014-02-01 23:00:00', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
     }
@@ -209,9 +211,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testEndOfNextMonth()
+    public function testEndOfNextMonth(): void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-01 23:00:00');
+        $date = new ChronosDateTimeImmutable('2014-01-01 23:00:00');
         $returnDate = $date->lastDayOfNextMonth();
         $this->assertEquals('2014-02-28 23:00:00', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
     }
@@ -224,9 +226,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testPreviousYear()
+    public function testPreviousYear(): void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-11 23:00:00');
+        $date = new ChronosDateTimeImmutable('2014-01-11 23:00:00');
         $returnDate = $date->previousYear();
         $this->assertEquals('2013-01-11 23:00:00', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
     }
@@ -234,9 +236,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testNextYear()
+    public function testNextYear(): void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-11 23:00:00');
+        $date = new ChronosDateTimeImmutable('2014-01-11 23:00:00');
         $returnDate = $date->nextYear();
         $this->assertEquals('2015-01-11 23:00:00', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
     }
@@ -244,9 +246,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testStartOfYear()
+    public function testStartOfYear(): void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-11 23:00:00');
+        $date = new ChronosDateTimeImmutable('2014-01-11 23:00:00');
         $returnDate = $date->firstDayOfYear();
         $this->assertEquals('2014-01-01 23:00:00', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
     }
@@ -254,9 +256,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testEndOfYear()
+    public function testEndOfYear(): void
     {
-        $date = new Chronos\ChronosDateTimeImmutable('2014-01-11 23:00:00');
+        $date = new ChronosDateTimeImmutable('2014-01-11 23:00:00');
         $returnDate = $date->lastDayOfYear();
         $this->assertEquals('2014-12-31 23:00:00', $returnDate->format(ChronosDateTimeImmutable::MYSQL));
     }
@@ -268,11 +270,11 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
      */
     /**
      * @dataProvider previousWeekDataProvider
-     * @param $dateTime
-     * @param $expectedDateTime
-     * @throws Exception
+     * @param string $dateTime
+     * @param string $expectedDateTime
+     * @throws \Exception
      */
-    public function testPreviousWeek($dateTime, $expectedDateTime)
+    public function testPreviousWeek(string $dateTime, string $expectedDateTime): void
     {
         $date = new ChronosDateTimeImmutable($dateTime);
         $returnDate = $date->previousWeek();
@@ -283,7 +285,7 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @return array[]
      */
-    public function previousWeekDataProvider()
+    public function previousWeekDataProvider(): array
     {
         return [
             ['2015-03-22 23:00:00', '2015-03-15 23:00:00'],
@@ -296,9 +298,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
      * @dataProvider nextWeekDataProvider
      * @param string $dateTime
      * @param string $expectedDateTime
-     * @throws Exception
+     * @throws \Exception
      */
-    public function testNextWeek($dateTime, $expectedDateTime)
+    public function testNextWeek(string $dateTime, string $expectedDateTime): void
     {
         $date = new ChronosDateTimeImmutable($dateTime);
         $returnDate = $date->nextWeek();
@@ -309,7 +311,7 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @return array[]
      */
-    public function nextWeekDataProvider()
+    public function nextWeekDataProvider(): array
     {
         return [
             ['2015-03-15 23:00:00', '2015-03-22 23:00:00'],
@@ -323,10 +325,10 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
      * @param string $dateTime
      * @param int $startDayOfWeek
      * @param string $expectedDateTime
-     * @throws InvalidArgumentException
-     * @throws Exception
+     * @throws \InvalidArgumentException
+     * @throws \Exception
      */
-    public function testFirstDayOfWeek($dateTime, $startDayOfWeek, $expectedDateTime)
+    public function testFirstDayOfWeek($dateTime, $startDayOfWeek, $expectedDateTime): void
     {
         $date = new ChronosDateTimeImmutable($dateTime);
         $returnDate = $date->setStartDayOfWeek($startDayOfWeek);
@@ -338,7 +340,7 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @return array[]
      */
-    public function firstDayOfWeekDataProvider()
+    public function firstDayOfWeekDataProvider(): array
     {
         return [
             ['2015-03-15 23:00:00', ChronosDateTimeImmutable::MONDAY, '2015-03-09 23:00:00'],
@@ -366,9 +368,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     /**
      * @throws \Exception
      */
-    public function testConvertDateTime()
+    public function testConvertDateTime(): void
     {
-        $date = new DateTime('2015-03-23 00:00:00', new DateTimeZone('Africa/Johannesburg'));
+        $date = new \DateTime('2015-03-23 00:00:00', new \DateTimeZone('Africa/Johannesburg'));
         $chronosDateTimeImmutable = ChronosDateTimeImmutable::convert($date);
         $this->assertEquals($date->getTimezone(), $chronosDateTimeImmutable->getTimezone());
         $this->assertEquals($date->getTimestamp(), $chronosDateTimeImmutable->getTimestamp());
@@ -379,10 +381,10 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws PHPUnit_Framework_AssertionFailedError
+     * @throws \PHPUnit_Framework_AssertionFailedError
      * @throws \Exception
      */
-    public function testValidateDate()
+    public function testValidateDate(): void
     {
         $valid = ChronosDateTimeImmutable::validate('2012-02-30 12:12:12');
         $this->assertFalse($valid);
@@ -393,9 +395,9 @@ class ChronosDateTimeImmutableTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws PHPUnit_Framework_Exception
+     * @throws \PHPUnit_Framework_Exception
      */
-    public function testCreateFromFormat()
+    public function testCreateFromFormat(): void
     {
         $date = ChronosDateTimeImmutable::createFromFormat(ChronosDateTimeImmutable::MYSQL, '2015-03-16 23:00:00');
         $this->assertInstanceOf(ChronosDateTimeImmutable::class, $date);

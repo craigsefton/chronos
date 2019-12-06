@@ -54,7 +54,7 @@ class ChronosDateTimeImmutable extends \DateTimeImmutable implements ChronosInte
      * @return ChronosDateTimeImmutable
      * @throws \Exception
      */
-    public static function createFromMutable($dateTime)
+    public static function createFromMutable($dateTime) : ChronosDateTimeImmutable
     {
         return static::convert(\DateTimeImmutable::createFromMutable($dateTime));
     }
@@ -83,20 +83,22 @@ class ChronosDateTimeImmutable extends \DateTimeImmutable implements ChronosInte
     /**
      * @param \DateTimeInterface $date
      * @param string $format
-     * @return ChronosInterface|static
+     * @return ChronosDateTimeImmutable
      * @throws \Exception
      */
-    public static function convert(\DateTimeInterface $date, $format = ChronosInterface::MYSQL)
-    {
+    public static function convert(
+        \DateTimeInterface $date,
+        string $format = ChronosInterface::MYSQL
+    ) : ChronosInterface {
         return new static($date->format($format), $date->getTimezone());
     }
 
     /**
      * @param int $startDayOfWeek
-     * @return ChronosDateTimeImmutable|ChronosInterface
+     * @return ChronosDateTimeImmutable
      * @throws \InvalidArgumentException
      */
-    public function setStartDayOfWeek($startDayOfWeek)
+    public function setStartDayOfWeek(int $startDayOfWeek) : ChronosInterface
     {
         $clone = clone $this;
         if (!is_int($startDayOfWeek) || !array_key_exists($startDayOfWeek, ChronosInterface::DAYS_OF_WEEK)) {
@@ -112,7 +114,7 @@ class ChronosDateTimeImmutable extends \DateTimeImmutable implements ChronosInte
      * @param string $defaultPrintFormat
      * @return ChronosDateTimeImmutable
      */
-    public function setDefaultPrintFormat($defaultPrintFormat)
+    public function setDefaultPrintFormat(string $defaultPrintFormat) : ChronosDateTimeImmutable
     {
         $clone = clone $this;
         $clone->defaultPrintFormat = $defaultPrintFormat;
