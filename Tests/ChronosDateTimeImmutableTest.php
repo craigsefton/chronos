@@ -19,6 +19,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-01 23:10:30');
         $returnDate = $date->startOfMinute();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2014-01-01 23:10:00', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
         $this->assertEquals('2014-01-01 23:10:30', $date->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
@@ -30,6 +31,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-01 23:10:30');
         $returnDate = $date->endOfMinute();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2014-01-01 23:10:59', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
         $this->assertEquals('2014-01-01 23:10:30', $date->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
@@ -41,6 +43,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-01 23:10:30');
         $returnDate = $date->previousMinute();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2014-01-01 23:09:30', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
         $this->assertEquals('2014-01-01 23:10:30', $date->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
@@ -52,6 +55,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-01 23:10:30');
         $returnDate = $date->nextMinute();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2014-01-01 23:11:30', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
         $this->assertEquals('2014-01-01 23:10:30', $date->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
@@ -68,6 +72,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-01 23:10:00');
         $returnDate = $date->startOfHour();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2014-01-01 23:00:00', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
         $this->assertEquals('2014-01-01 23:10:00', $date->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
@@ -79,6 +84,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-01 23:10:00');
         $returnDate = $date->endOfHour();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2014-01-01 23:59:59', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
         $this->assertEquals('2014-01-01 23:10:00', $date->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
@@ -90,6 +96,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-01 23:10:00');
         $returnDate = $date->previousHour();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2014-01-01 22:10:00', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
         $this->assertEquals('2014-01-01 23:10:00', $date->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
@@ -101,6 +108,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-01 22:10:00');
         $returnDate = $date->nextHour();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2014-01-01 23:10:00', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
         $this->assertEquals('2014-01-01 22:10:00', $date->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
@@ -117,6 +125,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-01 23:00:00');
         $returnDate = $date->startOfDay();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2014-01-01 00:00:00', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
         $this->assertEquals('2014-01-01 23:00:00', $date->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
@@ -128,6 +137,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-01 23:00:00');
         $returnDate = $date->endOfDay();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2014-01-01 23:59:59', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
         $this->assertEquals('2014-01-01 23:00:00', $date->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
@@ -139,6 +149,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-01 23:00:00');
         $returnDate = $date->previousDay();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2013-12-31 23:00:00', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
         $this->assertEquals('2014-01-01 23:00:00', $date->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
@@ -150,6 +161,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-01 23:00:00');
         $returnDate = $date->nextDay();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2014-01-02 23:00:00', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
         $this->assertEquals('2014-01-01 23:00:00', $date->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
@@ -166,6 +178,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-11 23:00:00');
         $returnDate = $date->firstDayOfMonth();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2014-01-01 23:00:00', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
 
@@ -176,6 +189,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-11 23:00:00');
         $returnDate = $date->lastDayOfMonth();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2014-01-31 23:00:00', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
 
@@ -186,6 +200,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-11 23:00:00');
         $returnDate = $date->firstDayOfPreviousMonth();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2013-12-01 23:00:00', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
 
@@ -196,6 +211,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-11 23:00:00');
         $returnDate = $date->lastDayOfPreviousMonth();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2013-12-31 23:00:00', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
 
@@ -206,6 +222,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-01 23:00:00');
         $returnDate = $date->firstDayOfNextMonth();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2014-02-01 23:00:00', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
 
@@ -216,6 +233,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-01 23:00:00');
         $returnDate = $date->lastDayOfNextMonth();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2014-02-28 23:00:00', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
 
@@ -231,6 +249,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-11 23:00:00');
         $returnDate = $date->previousYear();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2013-01-11 23:00:00', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
 
@@ -241,6 +260,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-11 23:00:00');
         $returnDate = $date->nextYear();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2015-01-11 23:00:00', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
 
@@ -251,6 +271,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-11 23:00:00');
         $returnDate = $date->firstDayOfYear();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2014-01-01 23:00:00', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
 
@@ -261,6 +282,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable('2014-01-11 23:00:00');
         $returnDate = $date->lastDayOfYear();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals('2014-12-31 23:00:00', $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
 
@@ -279,6 +301,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable($dateTime);
         $returnDate = $date->previousWeek();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals($dateTime, $date->format(ChronosDateTimeImmutable::DATE_MYSQL));
         $this->assertEquals($expectedDateTime, $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
@@ -305,6 +328,7 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable($dateTime);
         $returnDate = $date->nextWeek();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals($dateTime, $date->format(ChronosDateTimeImmutable::DATE_MYSQL));
         $this->assertEquals($expectedDateTime, $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
@@ -334,8 +358,10 @@ class ChronosDateTimeImmutableTest extends TestCase
     {
         $date = new ChronosDateTimeImmutable($dateTime);
         $returnDate = $date->setStartDayOfWeek($startDayOfWeek);
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals(0, $date->getStartDayOfWeek());
         $returnDate = $returnDate->firstDayOfWeek();
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $returnDate);
         $this->assertEquals($expectedDateTime, $returnDate->format(ChronosDateTimeImmutable::DATE_MYSQL));
     }
 
@@ -370,11 +396,13 @@ class ChronosDateTimeImmutableTest extends TestCase
     /**
      * @throws \PHPUnit\Framework\ExpectationFailedException
      * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     * @throws \Exception
      */
     public function testConvertDateTime(): void
     {
         $date = new \DateTime('2015-03-23 00:00:00', new \DateTimeZone('Africa/Johannesburg'));
         $chronosDateTimeImmutable = ChronosDateTimeImmutable::convert($date);
+        $this->assertInstanceOf(ChronosDateTimeImmutable::class, $chronosDateTimeImmutable);
         $this->assertEquals($date->getTimezone(), $chronosDateTimeImmutable->getTimezone());
         $this->assertEquals($date->getTimestamp(), $chronosDateTimeImmutable->getTimestamp());
         $this->assertEquals(
