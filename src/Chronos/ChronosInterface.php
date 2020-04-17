@@ -2,6 +2,10 @@
 
 namespace Chronos;
 
+/**
+ * @todo Need to add __set_state to the interface, however, method signature between PHP7.2 and 7.4 is different.
+ * Be good to figure out a way to do this safely.
+ */
 interface ChronosInterface extends \DateTimeInterface
 {
     public const DATE_MYSQL = 'Y-m-d H:i:s';
@@ -252,12 +256,6 @@ interface ChronosInterface extends \DateTimeInterface
      * @return ChronosInterface|false
      */
     public function setTime(int $hour, int $minute, int $second = 0, int $microseconds = 0);
-
-    /**
-     * @param array $array
-     * @return ChronosInterface
-     */
-    public static function __set_state(array $array);
 
     /**
      * @param int $year
