@@ -4,7 +4,7 @@ namespace Chronos;
 
 interface ChronosInterface extends \DateTimeInterface
 {
-    public const MYSQL = 'Y-m-d H:i:s';
+    public const DATE_MYSQL = 'Y-m-d H:i:s';
 
     public const SUNDAY = 0;
     public const MONDAY = 1;
@@ -26,25 +26,21 @@ interface ChronosInterface extends \DateTimeInterface
 
     /**
      * Set the current object to the start of the current minute.
-     * @return ChronosInterface
      */
     public function startOfMinute() : ChronosInterface;
 
     /**
      * Set current object to the end of the current minute.
-     * @return ChronosInterface
      */
     public function endOfMinute() : ChronosInterface;
 
     /**
      * Set the current object to the previous minute, preserving seconds.
-     * @return ChronosInterface
      */
     public function previousMinute() : ChronosInterface;
 
     /**
      * Set the current object to the next minute, preserving seconds.
-     * @return ChronosInterface
      */
     public function nextMinute() : ChronosInterface;
 
@@ -61,19 +57,16 @@ interface ChronosInterface extends \DateTimeInterface
 
     /**
      * Set current object to the end of the current hour.
-     * @return ChronosInterface
      */
     public function endOfHour() : ChronosInterface;
 
     /**
      * Set current object to the previous hour, preserving seconds and minutes.
-     * @return ChronosInterface
      */
     public function previousHour() : ChronosInterface;
 
     /**
      * Set current object to the next hour, preserving seconds and minutes.
-     * @return ChronosInterface
      */
     public function nextHour() : ChronosInterface;
 
@@ -84,25 +77,21 @@ interface ChronosInterface extends \DateTimeInterface
      */
     /**
      * Set current object to the start of the day.
-     * @return ChronosInterface
      */
     public function startOfDay() : ChronosInterface;
 
     /**
      * Set current object to the end of the day.
-     * @return ChronosInterface
      */
     public function endOfDay() : ChronosInterface;
 
     /**
      * Set current object 1 day ago, preserving the current timestamp.
-     * @return ChronosInterface
      */
     public function previousDay() : ChronosInterface;
 
     /**
      * Set current object 1 day ahead, preserving the current timestamp.
-     * @return ChronosInterface
      */
     public function nextDay() : ChronosInterface;
 
@@ -113,25 +102,21 @@ interface ChronosInterface extends \DateTimeInterface
      */
     /**
      * Set current object to one week ago, preserving the current timestamp.
-     * @return ChronosInterface
      */
     public function previousWeek() : ChronosInterface;
 
     /**
      * Set current object to one week ahead, preserving the current timestamp.
-     * @return ChronosInterface
      */
     public function nextWeek() : ChronosInterface;
 
     /**
      * Set current object to the first day of the week, preserving the current timestamp.
-     * @return ChronosInterface
      */
     public function firstDayOfWeek() : ChronosInterface;
 
     /**
      * Set current object to the last day of the week, preserving the current timestamp.
-     * @return ChronosInterface
      */
     public function lastDayOfWeek() : ChronosInterface;
 
@@ -148,31 +133,26 @@ interface ChronosInterface extends \DateTimeInterface
 
     /**
      * Set object to the end of the month, preserving the current timestamp.
-     * @return ChronosInterface
      */
     public function lastDayOfMonth() : ChronosInterface;
 
     /**
      * Set current object to start of previous month, preserving the current timestamp.
-     * @return ChronosInterface
      */
     public function firstDayOfPreviousMonth() : ChronosInterface;
 
     /**
      * Set current object to the end of the previous month, preserving the current timestamp.
-     * @return ChronosInterface
      */
     public function lastDayOfPreviousMonth() : ChronosInterface;
 
     /**
      * Set current object to start of next month, preserving the current timestamp.
-     * @return ChronosInterface
      */
     public function firstDayOfNextMonth() : ChronosInterface;
 
     /**
      * Set current object to the end of next month, preserving the current timestamp.
-     * @return ChronosInterface
      */
     public function lastDayOfNextMonth() : ChronosInterface;
 
@@ -183,7 +163,6 @@ interface ChronosInterface extends \DateTimeInterface
      */
     /**
      * Set the current date object to exactly one year ago, preserving the current timestamp.
-     * @return ChronosInterface
      */
     public function previousYear() : ChronosInterface;
 
@@ -195,13 +174,11 @@ interface ChronosInterface extends \DateTimeInterface
 
     /**
      * Set object to the first day of the year, preserving the current timestamp.
-     * @return ChronosInterface
      */
     public function firstDayOfYear() : ChronosInterface;
 
     /**
      * Set current object to the last day of the year, preserving the current timestamp.
-     * @return ChronosInterface
      */
     public function lastDayOfYear() : ChronosInterface;
 
@@ -221,7 +198,7 @@ interface ChronosInterface extends \DateTimeInterface
      * @return bool False if not a valid date time string, true if it is.
      * @throws \Exception
      */
-    public static function validate(string $dateTimeString, string $format = self::MYSQL) : bool;
+    public static function validate(string $dateTimeString, string $format = self::DATE_MYSQL) : bool;
 
     /**
      * @static Convert an object that implements DateTimeInterface, and convert it into a ChronosInterface.
@@ -232,6 +209,40 @@ interface ChronosInterface extends \DateTimeInterface
      */
     public static function convert(
         \DateTimeInterface $date,
-        string $format = ChronosInterface::MYSQL
+        string $format = ChronosInterface::DATE_MYSQL
     ) : ChronosInterface;
+
+    public function setDefaultPrintFormat(string $defaultPrintFormat) : ChronosInterface;
+
+    /**
+     * Note: we do not declare a return type here because it must be compatible with DateTime and DateTimeImmutable.
+     *
+     * @param string $modify
+     * @return ChronosInterface
+     * @noinspection ReturnTypeCanBeDeclaredInspection
+     */
+    public function modify(string $modify);
+
+    /**
+     * Note: we do not declare return type here because it must be compatible with DateTime and DateTimeImmutable.
+     *
+     * @param string $format
+     * @return string
+     * @noinspection ReturnTypeCanBeDeclaredInspection
+     */
+    public function format($format);
+
+    /**
+     * Note: we do not declare return type here because it must be compatible with DateTime and DateTimeImmutable.
+     *
+     * @param int $hour
+     * @param int $minute
+     * @param int $second
+     * @param int $microseconds
+     * @return ChronosInterface
+     * @noinspection ReturnTypeCanBeDeclaredInspection
+     */
+    public function setTime(int $hour, int $minute, int $second = 0, int $microseconds = 0);
+
+    public function __toString() : string;
 }
