@@ -88,7 +88,7 @@ class ChronosDateTimeImmutable extends \DateTimeImmutable implements ChronosInte
      */
     public static function convert(
         \DateTimeInterface $date,
-        string $format = ChronosInterface::MYSQL
+        string $format = ChronosInterface::DATE_MYSQL
     ) : ChronosInterface {
         return new static($date->format($format), $date->getTimezone());
     }
@@ -114,7 +114,7 @@ class ChronosDateTimeImmutable extends \DateTimeImmutable implements ChronosInte
      * @param string $defaultPrintFormat
      * @return ChronosDateTimeImmutable
      */
-    public function setDefaultPrintFormat(string $defaultPrintFormat) : ChronosDateTimeImmutable
+    public function setDefaultPrintFormat(string $defaultPrintFormat) : ChronosInterface
     {
         $clone = clone $this;
         $clone->defaultPrintFormat = $defaultPrintFormat;

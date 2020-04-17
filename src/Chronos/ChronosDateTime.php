@@ -16,7 +16,6 @@ namespace Chronos;
 
 /**
  * @method ChronosDateTime|false setTime($hour, $minute, $second = 0, $microseconds = 0)
- * @method ChronosDateTime setStartDayOfWeek($startDayOfWeek)
  * @method ChronosDateTime modify($modify)
  * @method ChronosDateTime|false setDate($year, $month, $day)
  * @method ChronosDateTime startOfMinute()
@@ -45,7 +44,6 @@ namespace Chronos;
  * @method ChronosDateTime nextYear()
  * @method ChronosDateTime firstDayOfYear()
  * @method ChronosDateTime lastDayOfYear()
- * @method ChronosDateTime setDefaultPrintFormat($format)
  */
 class ChronosDateTime extends \DateTime implements ChronosInterface
 {
@@ -57,8 +55,10 @@ class ChronosDateTime extends \DateTime implements ChronosInterface
      * @return ChronosDateTime
      * @throws \Exception
      */
-    public static function convert(\DateTimeInterface $date, string $format = ChronosInterface::MYSQL) : ChronosInterface
-    {
+    public static function convert(
+        \DateTimeInterface $date,
+        string $format = ChronosInterface::DATE_MYSQL
+    ) : ChronosInterface {
         return new static($date->format($format), $date->getTimezone());
     }
 
@@ -81,5 +81,33 @@ class ChronosDateTime extends \DateTime implements ChronosInterface
         } catch (\Exception $e) {
             return false;
         }
+    }
+
+    /**
+     * Set a default format for printing static objects.
+     *
+     * @param string $defaultPrintFormat
+     * @return ChronosDateTime
+     */
+    public function setDefaultPrintFormat($defaultPrintFormat) : ChronosInterface
+    {
+        $this->defaultPrintFormat = $defaultPrintFormat;
+        return $this;
+    }
+
+    /**
+     * @param int $startDayOfWeek
+     * @throws \InvalidArgumentException if the start day of the week is invalid.
+     * @return ChronosDateTime
+     */
+    public function setStartDayOfWeek(int $startDayOfWeek) : ChronosInterface
+    {
+        if (!is_int($startDayOfWeek) || !array_key_exists($startDayOfWeek, ChronosInterface::DAYS_OF_WEEK)) {
+            throw new \InvalidArgumentException(
+                'Start day of the week should be a number from 0 (Sunday) to 6 (Saturday).'
+            );
+        }
+        $this->startDayOfWeek = $startDayOfWeek;
+        return $this;
     }
 }
