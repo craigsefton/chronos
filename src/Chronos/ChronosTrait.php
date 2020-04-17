@@ -2,11 +2,6 @@
 
 namespace Chronos;
 
-/**
- * Trait ChronosTrait
- * @package Chronos
- * @method static ChronosInterface createFromFormat(string $format, string $dateTimeString, \DateTimeZone $timezone=null)
- */
 trait ChronosTrait
 {
     /**
@@ -31,14 +26,16 @@ trait ChronosTrait
     /**
      * @param string $format
      * @return string
+     * @noinspection ReturnTypeCanBeDeclaredInspection
      */
     abstract public function format($format);
 
     /**
      * @param string $modify
      * @return ChronosInterface
+     * @noinspection ReturnTypeCanBeDeclaredInspection
      */
-    abstract public function modify($modify);
+    abstract public function modify(string $modify);
 
     /**
      * @param int $year
@@ -59,9 +56,9 @@ trait ChronosTrait
      * @param string $format The format of the date string we are validating. Default is Y-m-d H:i:s.
      * @return bool False if not a valid date time string, true if it is.
      */
-    public static function validate(string $dateTimeString, string $format = self::MYSQL) : bool
+    public static function validate(string $dateTimeString, string $format = self::DATE_MYSQL) : bool
     {
-        $d = static::createFromFormat($format, $dateTimeString);
+        $d = \DateTime::createFromFormat($format, $dateTimeString);
         return $d && $d->format($format) === $dateTimeString;
     }
 
@@ -367,34 +364,6 @@ trait ChronosTrait
     public function getDefaultPrintFormat() : string
     {
         return $this->defaultPrintFormat;
-    }
-
-    /**
-     * Set a default format for printing static objects.
-     *
-     * @param string $defaultPrintFormat
-     * @return ChronosInterface
-     */
-    public function setDefaultPrintFormat($defaultPrintFormat) : ChronosInterface
-    {
-        $this->defaultPrintFormat = $defaultPrintFormat;
-        return $this;
-    }
-
-    /**
-     * @param int $startDayOfWeek
-     * @throws \InvalidArgumentException if the start day of the week is invalid.
-     * @return ChronosInterface
-     */
-    public function setStartDayOfWeek(int $startDayOfWeek) : ChronosInterface
-    {
-        if (!is_int($startDayOfWeek) || !array_key_exists($startDayOfWeek, ChronosInterface::DAYS_OF_WEEK)) {
-            throw new \InvalidArgumentException(
-                'Start day of the week should be a number from 0 (Sunday) to 6 (Saturday).'
-            );
-        }
-        $this->startDayOfWeek = $startDayOfWeek;
-        return $this;
     }
 
     /**
