@@ -15,9 +15,15 @@
 namespace Chronos;
 
 /**
- * @method ChronosDateTime|false setTime($hour, $minute, $second = 0, $microseconds = 0)
- * @method ChronosDateTime modify($modify)
- * @method ChronosDateTime|false setDate($year, $month, $day)
+ * @method ChronosDateTime|false add(\DateInterval $interval)
+ * @method ChronosDateTime|false modify(string $modify)
+ * @method ChronosDateTime|false setDate(int $year, int $month, int $day)
+ * @method static ChronosDateTime|false __set_state(array $array)
+ * @method ChronosDateTime|false setISODate(int $year, int $month, int $day = 1)
+ * @method ChronosDateTime|false setTime(int $hour, int $minute, int $second = 0, int $microseconds = 0)
+ * @method ChronosDateTime|false setTimestamp(int $unixtimestamp)
+ * @method ChronosDateTime|false setTimezone(\DateTimeZone $timezone)
+ * @method ChronosDateTime|false sub(\DateInterval $interval)
  * @method ChronosDateTime startOfMinute()
  * @method ChronosDateTime endOfMinute()
  * @method ChronosDateTime previousMinute()

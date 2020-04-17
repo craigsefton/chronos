@@ -51,7 +51,6 @@ interface ChronosInterface extends \DateTimeInterface
      */
     /**
      * Set current object to the start of the current hour.
-     * @return ChronosInterface
      */
     public function startOfHour() : ChronosInterface;
 
@@ -127,7 +126,6 @@ interface ChronosInterface extends \DateTimeInterface
      */
     /**
      * Set object to the start of the month, preserving the current timestamp.
-     * @return ChronosInterface
      */
     public function firstDayOfMonth() : ChronosInterface;
 
@@ -168,7 +166,6 @@ interface ChronosInterface extends \DateTimeInterface
 
     /**
      * Set the current date object to exactly one year from now, preserving the current timestamp.
-     * @return ChronosInterface
      */
     public function nextYear() : ChronosInterface;
 
@@ -215,34 +212,86 @@ interface ChronosInterface extends \DateTimeInterface
     public function setDefaultPrintFormat(string $defaultPrintFormat) : ChronosInterface;
 
     /**
+     * @param \DateInterval $interval
+     * @return ChronosInterface|false
+     */
+    public function add(\DateInterval $interval);
+
+    /**
+     * @param string $format
+     * @param string $time
+     * @param \DateTimeZone|null $timezone
+     * @return ChronosInterface|false
+     */
+    public static function createFromFormat($format, $time, \DateTimeZone $timezone = null);
+
+    /**
      * Note: we do not declare a return type here because it must be compatible with DateTime and DateTimeImmutable.
-     *
-     * @param string $modify
-     * @return ChronosInterface
+     * @return array
      * @noinspection ReturnTypeCanBeDeclaredInspection
+     */
+    public static function getLastErrors();
+
+    /**
+     * @param string $modify
+     * @return ChronosInterface|false
      */
     public function modify(string $modify);
 
     /**
-     * Note: we do not declare return type here because it must be compatible with DateTime and DateTimeImmutable.
-     *
      * @param string $format
-     * @return string
-     * @noinspection ReturnTypeCanBeDeclaredInspection
+     * @return string|false
      */
     public function format($format);
 
     /**
-     * Note: we do not declare return type here because it must be compatible with DateTime and DateTimeImmutable.
-     *
      * @param int $hour
      * @param int $minute
      * @param int $second
      * @param int $microseconds
-     * @return ChronosInterface
-     * @noinspection ReturnTypeCanBeDeclaredInspection
+     * @return ChronosInterface|false
      */
     public function setTime(int $hour, int $minute, int $second = 0, int $microseconds = 0);
+
+    /**
+     * @param array $array
+     * @return ChronosInterface
+     */
+    public static function __set_state(array $array);
+
+    /**
+     * @param int $year
+     * @param int $month
+     * @param int $day
+     * @return ChronosInterface|false
+     */
+    public function setDate(int $year, int $month, int $day);
+
+    /**
+     * @param int $year
+     * @param int $week
+     * @param int $day
+     * @return ChronosInterface|false
+     */
+    public function setISODate(int $year, int $week, int $day = 1);
+
+    /**
+     * @param int $unixtimestamp
+     * @return ChronosInterface|false
+     */
+    public function setTimestamp(int $unixtimestamp);
+
+    /**
+     * @param \DateTimeZone $timeZone
+     * @return ChronosInterface|false
+     */
+    public function setTimezone(\DateTimeZone $timeZone);
+
+    /**
+     * @param \DateInterval $interval
+     * @return ChronosInterface|false
+     */
+    public function sub(\DateInterval $interval);
 
     public function __toString() : string;
 }
