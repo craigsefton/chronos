@@ -1,9 +1,5 @@
 <?php
 
-/**
- * @todo Fix Chronos Tests for TypeErrors now that we're using strict types.
- */
-
 namespace ChronosTests;
 
 use Chronos\ChronosDateTime;
