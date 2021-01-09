@@ -1,4 +1,5 @@
-<?php
+<?php declare(strict_types = 1);
+
 /**
  * @file
  * ChronosDateTimeImmutable: An extension of the base PHP DateTimeImmutable class
@@ -14,66 +15,31 @@
 
 namespace Chronos;
 
-/**
- * @method ChronosDateTimeImmutable|false add(\DateInterval $interval)
- * @method ChronosDateTimeImmutable|false modify(string $modify)
- * @method ChronosDateTimeImmutable|false setDate(int $year, int $month, int $day)
- * @method static ChronosDateTimeImmutable|false __set_state(array $array)
- * @method ChronosDateTimeImmutable|false setISODate(int $year, int $month, int $day = 1)
- * @method ChronosDateTimeImmutable|false setTime(int $hour, int $minute, int $second = 0, int $microseconds = 0)
- * @method ChronosDateTimeImmutable|false setTimestamp(int $unixtimestamp)
- * @method ChronosDateTimeImmutable|false setTimezone(\DateTimeZone $timezone)
- * @method ChronosDateTimeImmutable|false sub(\DateInterval $interval)
- * @method ChronosDateTimeImmutable startOfMinute()
- * @method ChronosDateTimeImmutable endOfMinute()
- * @method ChronosDateTimeImmutable previousMinute()
- * @method ChronosDateTimeImmutable nextMinute()
- * @method ChronosDateTimeImmutable startOfHour()
- * @method ChronosDateTimeImmutable endOfHour()
- * @method ChronosDateTimeImmutable previousHour()
- * @method ChronosDateTimeImmutable nextHour()
- * @method ChronosDateTimeImmutable startOfDay()
- * @method ChronosDateTimeImmutable endOfDay()
- * @method ChronosDateTimeImmutable previousDay()
- * @method ChronosDateTimeImmutable nextDay()
- * @method ChronosDateTimeImmutable previousWeek()
- * @method ChronosDateTimeImmutable nextWeek()
- * @method ChronosDateTimeImmutable firstDayOfWeek()
- * @method ChronosDateTimeImmutable lastDayOfWeek()
- * @method ChronosDateTimeImmutable firstDayOfMonth()
- * @method ChronosDateTimeImmutable lastDayOfMonth()
- * @method ChronosDateTimeImmutable firstDayOfPreviousMonth()
- * @method ChronosDateTimeImmutable lastDayOfPreviousMonth()
- * @method ChronosDateTimeImmutable firstDayOfNextMonth()
- * @method ChronosDateTimeImmutable lastDayOfNextMonth()
- * @method ChronosDateTimeImmutable previousYear()
- * @method ChronosDateTimeImmutable nextYear()
- * @method ChronosDateTimeImmutable firstDayOfYear()
- * @method ChronosDateTimeImmutable lastDayOfYear()
- */
 class ChronosDateTimeImmutable extends \DateTimeImmutable implements ChronosInterface
 {
     use ChronosTrait;
 
     /**
-     * @param \DateTime $dateTime Note that the declaration is not strongly typed; php throws an error.
+     * @param \DateTime $object
      * @return ChronosDateTimeImmutable
      * @throws \Exception
+     * @noinspection PhpMissingParamTypeInspection PHP throws an error.
      */
-    public static function createFromMutable($dateTime) : ChronosDateTimeImmutable
+    public static function createFromMutable($object) : ChronosDateTimeImmutable
     {
-        return static::convert(\DateTimeImmutable::createFromMutable($dateTime));
+        return static::convert(\DateTimeImmutable::createFromMutable($object));
     }
 
     /**
      * @param string $format
-     * @param string $time
+     * @param string $datetime
      * @param \DateTimeZone|null $timezone
      * @return ChronosDateTimeImmutable|false
+     * @noinspection PhpMissingParamTypeInspection PHP throws an error.
      */
-    public static function createFromFormat($format, $time, \DateTimeZone $timezone = null)
+    public static function createFromFormat($format, $datetime, \DateTimeZone $timezone = null)
     {
-        $dateTime = \DateTimeImmutable::createFromFormat($format, $time, $timezone);
+        $dateTime = \DateTimeImmutable::createFromFormat($format, $datetime, $timezone);
         if (false === $dateTime) {
             return false;
         }

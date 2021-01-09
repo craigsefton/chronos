@@ -12,7 +12,7 @@ A drop-in replacement for PHP's `\DateTime` and `\DateTimeImmutable` objects tha
 3. Run command ```composer install``` 
 
 ## Testing Your Installation
-All tests are built using PHPUnit, which should have been installed as part of
+Tests have been written in PHPUnit, which should have been installed as part of
 the composer installation (PHPUnit is a dev dependency).
 
 To run all tests, run the command ```vendor/bin/phpunit``` from within the

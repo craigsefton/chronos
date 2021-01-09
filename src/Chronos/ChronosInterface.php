@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Chronos;
 
@@ -223,11 +223,12 @@ interface ChronosInterface extends \DateTimeInterface
 
     /**
      * @param string $format
-     * @param string $time
+     * @param string $datetime
      * @param \DateTimeZone|null $timezone
      * @return ChronosInterface|false
+     * @noinspection PhpMissingParamTypeInspection PHP throws an error
      */
-    public static function createFromFormat($format, $time, \DateTimeZone $timezone = null);
+    public static function createFromFormat($format, $datetime, \DateTimeZone $timezone = null);
 
     /**
      * Note: we do not declare a return type here because it must be compatible with DateTime and DateTimeImmutable.

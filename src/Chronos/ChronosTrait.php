@@ -1,7 +1,14 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Chronos;
 
+/**
+ * Trait ChronosTrait
+ * @package Chronos
+ *
+ * Because of the way PHP has defined their interface, there is no easy way to share code between DateTime and
+ * DateTimeImmutable. The only way I could achieve it was to use a trait.
+ */
 trait ChronosTrait
 {
     /**
@@ -27,6 +34,8 @@ trait ChronosTrait
      * @param string $format
      * @return string
      * @noinspection ReturnTypeCanBeDeclaredInspection
+     * @noinspection PhpMissingParamTypeInspection PHP throws an error when used together with DateTime objects.
+     * @noinspection PhpMissingReturnTypeInspection
      */
     abstract public function format($format);
 
@@ -34,6 +43,7 @@ trait ChronosTrait
      * @param string $modify
      * @return ChronosInterface
      * @noinspection ReturnTypeCanBeDeclaredInspection
+     * @noinspection PhpMissingReturnTypeInspection
      */
     abstract public function modify(string $modify);
 
@@ -258,7 +268,7 @@ trait ChronosTrait
      */
     public function firstDayOfMonth() : ChronosInterface
     {
-        return $this->setDate($this->format('Y'), $this->format('m'), 1);
+        return $this->setDate((int) $this->format('Y'), (int) $this->format('m'), 1);
     }
 
     /**
@@ -268,7 +278,7 @@ trait ChronosTrait
      */
     public function lastDayOfMonth() : ChronosInterface
     {
-        return $this->setDate($this->format('Y'), $this->format('m'), $this->format('t'));
+        return $this->setDate((int) $this->format('Y'), (int) $this->format('m'), (int) $this->format('t'));
     }
 
     /**
@@ -343,7 +353,7 @@ trait ChronosTrait
      */
     public function firstDayOfYear() : ChronosInterface
     {
-        return $this->setDate($this->format('Y'), 1, 1);
+        return $this->setDate((int) $this->format('Y'), 1, 1);
     }
 
     /**
@@ -353,7 +363,7 @@ trait ChronosTrait
      */
     public function lastDayOfYear() : ChronosInterface
     {
-        return $this->setDate($this->format('Y'), 12, 31);
+        return $this->setDate((int) $this->format('Y'), 12, 31);
     }
 
     /**
