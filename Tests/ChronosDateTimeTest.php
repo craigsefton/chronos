@@ -1,407 +1,467 @@
 <?php
 
-class ChronosDateTimeTest extends PHPUnit_Framework_TestCase
+namespace ChronosTests;
+
+use Chronos\ChronosDateTime;
+use PHPUnit\Framework\TestCase;
+
+class ChronosDateTimeTest extends TestCase
 {
-  /**
-   * ===========================================================================
-   * Minute tests
-   * ===========================================================================
-   */
-  public function testStartOfMinute() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:10:30");
-    $date->startOfMinute();
-    $this->assertEquals("2014-01-01 23:10:00", $date->format('Y-m-d H:i:s'));
-  }
+    /**
+     * ===========================================================================
+     * Minute tests
+     * ===========================================================================
+     */
+    /**
+     * @throws \Exception
+     */
+    public function testStartOfMinute(): void
+    {
+        $date = new ChronosDateTime('2014-01-01 23:10:30');
+        $date->startOfMinute();
+        self::assertEquals('2014-01-01 23:10:00', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testEndOfMinute(): void
+    {
+        $date = new ChronosDateTime('2014-01-01 23:10:30');
+        $date->endOfMinute();
+        self::assertEquals('2014-01-01 23:10:59', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testPreviousMinute(): void
+    {
+        $date = new ChronosDateTime('2014-01-01 23:10:30');
+        $date->previousMinute();
+        self::assertEquals('2014-01-01 23:09:30', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testNextMinute(): void
+    {
+        $date = new ChronosDateTime('2014-01-01 23:10:30');
+        $date->nextMinute();
+        self::assertEquals('2014-01-01 23:11:30', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * ===========================================================================
+     * Hour Tests
+     * ===========================================================================
+     */
+    /**
+     * @throws \Exception
+     */
+    public function testStartOfHour(): void
+    {
+        $date = new ChronosDateTime('2014-01-01 23:10:00');
+        $date->startOfHour();
+        self::assertEquals('2014-01-01 23:00:00', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testEndOfHour(): void
+    {
+        $date = new ChronosDateTime('2014-01-01 23:10:00');
+        $date->endOfHour();
+        self::assertEquals('2014-01-01 23:59:59', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testPreviousHour(): void
+    {
+        $date = new ChronosDateTime('2014-01-01 23:10:00');
+        $date->previousHour();
+        self::assertEquals('2014-01-01 22:10:00', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testNextHour(): void
+    {
+        $date = new ChronosDateTime('2014-01-01 22:10:00');
+        $date->nextHour();
+        self::assertEquals('2014-01-01 23:10:00', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * ===========================================================================
+     * Day tests.
+     * ===========================================================================
+     */
+    /**
+     * @throws \Exception
+     */
+    public function testStartOfDay(): void
+    {
+        $date = new ChronosDateTime('2014-01-01 23:00:00');
+        $date->startOfDay();
+        self::assertEquals('2014-01-01 00:00:00', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testEndOfDay(): void
+    {
+        $date = new ChronosDateTime('2014-01-01 23:00:00');
+        $date->endOfDay();
+        self::assertEquals('2014-01-01 23:59:59', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testPreviousDay(): void
+    {
+        $date = new ChronosDateTime('2014-01-01 23:00:00');
+        $date->previousDay();
+        self::assertEquals('2013-12-31 23:00:00', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testNextDay(): void
+    {
+        $date = new ChronosDateTime('2014-01-01 23:00:00');
+        $date->nextDay();
+        self::assertEquals('2014-01-02 23:00:00', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * ===========================================================================
+     * Month tests.
+     * ===========================================================================
+     */
+    /**
+     * @throws \Exception
+     */
+    public function testStartOfMonth(): void
+    {
+        $date = new ChronosDateTime('2014-01-11 23:00:00');
+        $date->firstDayOfMonth();
+        self::assertEquals('2014-01-01 23:00:00', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testEndOfMonth(): void
+    {
+        $date = new ChronosDateTime('2014-01-11 23:00:00');
+        $date->lastDayOfMonth();
+        self::assertEquals('2014-01-31 23:00:00', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testStartOfPreviousMonth(): void
+    {
+        $date = new ChronosDateTime('2014-01-11 23:00:00');
+        $date->firstDayOfPreviousMonth();
+        self::assertEquals('2013-12-01 23:00:00', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testEndOfPreviousMonth(): void
+    {
+        $date = new ChronosDateTime('2014-01-11 23:00:00');
+        $date->lastDayOfPreviousMonth();
+        self::assertEquals('2013-12-31 23:00:00', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testStartOfNextMonth(): void
+    {
+        $date = new ChronosDateTime('2014-01-01 23:00:00');
+        $date->firstDayOfNextMonth();
+        self::assertEquals('2014-02-01 23:00:00', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testEndOfNextMonth(): void
+    {
+        $date = new ChronosDateTime('2014-01-01 23:00:00');
+        $date->lastDayOfNextMonth();
+        self::assertEquals('2014-02-28 23:00:00', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * ===========================================================================
+     * Year tests.
+     * ===========================================================================
+     */
+    /**
+     * @throws \Exception
+     */
+    public function testPreviousYear(): void
+    {
+        $date = new ChronosDateTime('2014-01-11 23:00:00');
+        $date->previousYear();
+        self::assertEquals('2013-01-11 23:00:00', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testNextYear(): void
+    {
+        $date = new ChronosDateTime('2014-01-11 23:00:00');
+        $date->nextYear();
+        self::assertEquals('2015-01-11 23:00:00', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testStartOfYear(): void
+    {
+        $date = new ChronosDateTime('2014-01-11 23:00:00');
+        $date->firstDayOfYear();
+        self::assertEquals('2014-01-01 23:00:00', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testEndOfYear() : void
+    {
+        $date = new ChronosDateTime('2014-01-11 23:00:00');
+        $date->lastDayOfYear();
+        self::assertEquals('2014-12-31 23:00:00', $date->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * ===========================================================================
+     * Week tests.
+     * ===========================================================================
+     */
+    /**
+     * @dataProvider previousWeekDataProvider
+     * @param string $dateTime
+     * @param string $expectedDateTime
+     * @throws \Exception
+     */
+    public function testPreviousWeek($dateTime, $expectedDateTime) : void
+    {
+        $date = new ChronosDateTime($dateTime);
+        $returnDate = $date->previousWeek();
+        self::assertEquals($expectedDateTime, $date->format(ChronosDateTime::DATE_MYSQL));
+        self::assertEquals($expectedDateTime, $returnDate->format(ChronosDateTime::DATE_MYSQL));
+    }
+
+    /**
+     * @return array[]
+     */
+    public function previousWeekDataProvider() : array
+    {
+        return [
+            ['2015-03-22 23:00:00', '2015-03-15 23:00:00'],
+            ['2016-01-07 23:00:00', '2015-12-31 23:00:00'],
+            ['2012-02-29 23:00:00', '2012-02-22 23:00:00'],
+        ];
+    }
 
 
-  public function testEndOfMinute() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:10:30");
-    $date->endOfMinute();
-    $this->assertEquals("2014-01-01 23:10:59", $date->format('Y-m-d H:i:s'));
-  }
+    /**
+     * @dataProvider nextWeekDataProvider
+     * @param string $dateTime
+     * @param string $expectedDateTime
+     * @throws \Exception
+     */
+    public function testNextWeek(string $dateTime, string $expectedDateTime) : void
+    {
+        $date = new ChronosDateTime($dateTime);
+        $returnDate = $date->nextWeek();
+        self::assertEquals($expectedDateTime, $date->format(ChronosDateTime::DATE_MYSQL));
+        self::assertEquals($expectedDateTime, $returnDate->format(ChronosDateTime::DATE_MYSQL));
+    }
 
-  public function testPreviousMinute() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:10:30");
-    $date->previousMinute();
-    $this->assertEquals("2014-01-01 23:09:30", $date->format('Y-m-d H:i:s'));
-  }
+    /**
+     * @return array[]
+     */
+    public function nextWeekDataProvider() : array
+    {
+        return [
+            ['2015-03-15 23:00:00', '2015-03-22 23:00:00'],
+            ['2015-12-31 23:00:00', '2016-01-07 23:00:00'],
+            ['2012-02-22 23:00:00', '2012-02-29 23:00:00'],
+        ];
+    }
 
-  public function testStartOfPreviousMinute() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:10:30");
-    $date->startOfPreviousMinute();
-    $this->assertEquals("2014-01-01 23:09:00", $date->format('Y-m-d H:i:s'));
-  }
+    /**
+     * @dataProvider startDayOfWeekDataProvider
+     * @param string $dateTime
+     * @param int $startDayOfWeek
+     * @param string $expectedDateTime
+     * @throws \InvalidArgumentException
+     * @throws \Exception
+     */
+    public function testFirstDayOfWeek(string $dateTime, int $startDayOfWeek, string $expectedDateTime) : void
+    {
+        $date = new ChronosDateTime($dateTime);
+        $date->setStartDayOfWeek($startDayOfWeek);
+        $date->firstDayOfWeek();
+        self::assertEquals($expectedDateTime, $date->format(ChronosDateTime::DATE_MYSQL));
 
-  public function testEndOfPreviousMinute() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:10:30");
-    $date->endOfPreviousMinute();
-    $this->assertEquals("2014-01-01 23:09:59", $date->format('Y-m-d H:i:s'));
-  }
+        $this->expectException(\InvalidArgumentException::class);
+        $date->setStartDayOfWeek(-1);
+    }
 
-  public function testNextMinute() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:10:30");
-    $date->nextMinute();
-    $this->assertEquals("2014-01-01 23:11:30", $date->format('Y-m-d H:i:s'));
-  }
+    /**
+     * @return array[]
+     */
+    public function startDayOfWeekDataProvider() : array
+    {
+        return [
+            ['2015-03-15 23:00:00', ChronosDateTime::MONDAY, '2015-03-09 23:00:00'],
+            ['2015-03-15 23:00:00', ChronosDateTime::TUESDAY, '2015-03-10 23:00:00'],
+            ['2015-03-15 23:00:00', ChronosDateTime::WEDNESDAY, '2015-03-11 23:00:00'],
+            ['2015-03-15 23:00:00', ChronosDateTime::THURSDAY, '2015-03-12 23:00:00'],
+            ['2015-03-15 23:00:00', ChronosDateTime::FRIDAY, '2015-03-13 23:00:00'],
+            ['2015-03-15 23:00:00', ChronosDateTime::SATURDAY, '2015-03-14 23:00:00'],
+            ['2015-03-15 23:00:00', ChronosDateTime::SUNDAY, '2015-03-15 23:00:00'],
+            ['2015-03-16 23:00:00', ChronosDateTime::MONDAY, '2015-03-16 23:00:00'],
+            ['2015-03-16 23:00:00', ChronosDateTime::TUESDAY, '2015-03-10 23:00:00'],
+            ['2015-03-16 23:00:00', ChronosDateTime::WEDNESDAY, '2015-03-11 23:00:00'],
+            ['2015-03-16 23:00:00', ChronosDateTime::THURSDAY, '2015-03-12 23:00:00'],
+            ['2015-03-16 23:00:00', ChronosDateTime::FRIDAY, '2015-03-13 23:00:00'],
+            ['2015-03-16 23:00:00', ChronosDateTime::SATURDAY, '2015-03-14 23:00:00'],
+            ['2015-03-16 23:00:00', ChronosDateTime::SUNDAY, '2015-03-15 23:00:00'],
+        ];
+    }
 
-  public function testStartOfNextMinute() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:10:30");
-    $date->startOfNextMinute();
-    $this->assertEquals("2014-01-01 23:11:00", $date->format('Y-m-d H:i:s'));
-  }
+    /**
+     * @return array[]
+     */
+    public function lastDayOfWeekDataProvider() : array
+    {
+        return [
+            ['2015-03-15 23:00:00', ChronosDateTime::MONDAY, '2015-03-15 23:00:00'],
+            ['2015-03-15 23:00:00', ChronosDateTime::TUESDAY, '2015-03-16 23:00:00'],
+            ['2015-03-15 23:00:00', ChronosDateTime::WEDNESDAY, '2015-03-17 23:00:00'],
+            ['2015-03-15 23:00:00', ChronosDateTime::THURSDAY, '2015-03-18 23:00:00'],
+            ['2015-03-15 23:00:00', ChronosDateTime::FRIDAY, '2015-03-19 23:00:00'],
+            ['2015-03-15 23:00:00', ChronosDateTime::SATURDAY, '2015-03-20 23:00:00'],
+            ['2015-03-15 23:00:00', ChronosDateTime::SUNDAY, '2015-03-21 23:00:00'],
+            ['2015-03-16 23:00:00', ChronosDateTime::MONDAY, '2015-03-22 23:00:00'],
+            ['2015-03-16 23:00:00', ChronosDateTime::TUESDAY, '2015-03-16 23:00:00'],
+            ['2015-03-16 23:00:00', ChronosDateTime::WEDNESDAY, '2015-03-17 23:00:00'],
+            ['2015-03-16 23:00:00', ChronosDateTime::THURSDAY, '2015-03-18 23:00:00'],
+            ['2015-03-16 23:00:00', ChronosDateTime::FRIDAY, '2015-03-19 23:00:00'],
+            ['2015-03-16 23:00:00', ChronosDateTime::SATURDAY, '2015-03-20 23:00:00'],
+            ['2015-03-16 23:00:00', ChronosDateTime::SUNDAY, '2015-03-21 23:00:00'],
+        ];
+    }
 
-  public function testEndOfNextMinute() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:10:30");
-    $date->endOfNextMinute();
-    $this->assertEquals("2014-01-01 23:11:59", $date->format('Y-m-d H:i:s'));
-  }
+    /**
+     * @dataProvider lastDayOfWeekDataProvider
+     * @param string $dateTime
+     * @param int $startDayOfWeek
+     * @param string $expectedDateTime
+     * @throws \InvalidArgumentException
+     * @throws \Exception
+     */
+    public function testLastDayOfWeek(string $dateTime, int $startDayOfWeek, string $expectedDateTime) : void
+    {
+        $date = new ChronosDateTime($dateTime);
+        $date->setStartDayOfWeek($startDayOfWeek);
+        $date->lastDayOfWeek();
+        self::assertEquals($expectedDateTime, $date->format(ChronosDateTime::DATE_MYSQL));
+    }
 
-  /**
-   * ===========================================================================
-   * Hour Tests
-   * ===========================================================================
-   */
-  public function testStartOfHour() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:10:00");
-    $date->startOfHour();
-    $this->assertEquals("2014-01-01 23:00:00", $date->format('Y-m-d H:i:s'));
-  }
+    /*
+     * ===========================================================================
+     * Misc tests.
+     * ===========================================================================
+     */
+    /**
+     * @throws \Exception
+     */
+    public function testConvertDateTime(): void
+    {
+        $date = new \DateTime('2015-03-23 00:00:00', new \DateTimeZone('Africa/Johannesburg'));
+        $chronosDateTime = ChronosDateTime::convert($date);
+        self::assertEquals($date->getTimezone(), $chronosDateTime->getTimezone());
+        self::assertEquals($date->getTimestamp(), $chronosDateTime->getTimestamp());
+        self::assertEquals(
+            $date->format(ChronosDateTime::DATE_MYSQL),
+            $chronosDateTime->format(ChronosDateTime::DATE_MYSQL)
+        );
+    }
 
-  public function testEndOfHour() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:10:00");
-    $date->endOfHour();
-    $this->assertEquals("2014-01-01 23:59:59", $date->format('Y-m-d H:i:s'));
-  }
+    /**
+     * @throws \Exception
+     */
+    public function testValidateDate(): void
+    {
+        $valid = ChronosDateTime::validate('2012-02-30 12:12:12');
+        self::assertFalse($valid);
+        $valid = ChronosDateTime::validate('14:77', 'H:i');
+        self::assertFalse($valid);
+        $valid = ChronosDateTime::validate('2012-02-30 12:12:12');
+        self::assertFalse($valid);
+    }
 
-  public function testPreviousHour() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:10:00");
-    $date->previousHour();
-    $this->assertEquals("2014-01-01 22:10:00", $date->format('Y-m-d H:i:s'));
-  }
+    /**
+     * @throws \PHPUnit\Framework\Exception
+     * @throws \PHPUnit\Framework\ExpectationFailedException
+     * @throws \SebastianBergmann\RecursionContext\InvalidArgumentException
+     */
+    public function testCreateFromFormat() : void
+    {
+        $date = ChronosDateTime::createFromFormat(ChronosDateTime::DATE_MYSQL, '2015-03-16 23:00:00');
+        self::assertInstanceOf(ChronosDateTime::class, $date);
+        self::assertEquals('2015-03-16 23:00:00', $date->format(ChronosDateTime::DATE_MYSQL));
 
-  public function testStartOfPreviousHour() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:10:00");
-    $date->startOfPreviousHour();
-    $this->assertEquals("2014-01-01 22:00:00", $date->format('Y-m-d H:i:s'));
-  }
+        self::assertFalse(
+            ChronosDateTime::createFromFormat(ChronosDateTime::DATE_MYSQL, 'invalid date time')
+        );
+    }
 
-  public function testEndOfPreviousHour() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:10:00");
-    $date->endOfPreviousHour();
-    $this->assertEquals("2014-01-01 22:59:59", $date->format('Y-m-d H:i:s'));
-  }
+    /**
+     * @dataProvider setDefaultPrintFormatDataProvider
+     * @param string $dateTime
+     * @param string $format
+     * @throws \Exception
+     */
+    public function testSetDefaultPrintFormat(string $dateTime, string $format) : void
+    {
+        $date = ChronosDateTime::createFromFormat($format, $dateTime);
+        $returnDate = $date->setDefaultPrintFormat($format);
+        self::assertEquals($format, $returnDate->getDefaultPrintFormat());
+        self::assertEquals($dateTime, (string)$returnDate);
+    }
 
-  public function testNextHour() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 22:10:00");
-    $date->nextHour();
-    $this->assertEquals("2014-01-01 23:10:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testStartOfNextHour() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 22:10:00");
-    $date->startOfNextHour();
-    $this->assertEquals("2014-01-01 23:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testEndOfNextHour() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 22:10:00");
-    $date->endOfNextHour();
-    $this->assertEquals("2014-01-01 23:59:59", $date->format('Y-m-d H:i:s'));
-  }
-
-  /**
-   * ===========================================================================
-   * Day tests.
-   * ===========================================================================
-   */
-  public function testStartOfDay() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:00:00");
-    $date->startOfDay();
-    $this->assertEquals("2014-01-01 00:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testEndOfDay() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:00:00");
-    $date->endOfDay();
-    $this->assertEquals("2014-01-01 23:59:59", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testPreviousDay() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:00:00");
-    $date->previousDay();
-    $this->assertEquals("2013-12-31 23:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testNextDay() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:00:00");
-    $date->nextDay();
-    $this->assertEquals("2014-01-02 23:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testStartOfPreviousDay() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:00:00");
-    $date->startOfPreviousDay();
-    $this->assertEquals("2013-12-31 00:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testEndOfPreviousDay() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:00:00");
-    $date->endOfPreviousDay();
-    $this->assertEquals("2013-12-31 23:59:59", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testStartOfNextDay() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:00:00");
-    $date->startOfNextDay();
-    $this->assertEquals("2014-01-02 00:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testEndOfNextDay() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:00:00");
-    $date->endOfNextDay();
-    $this->assertEquals("2014-01-02 23:59:59", $date->format('Y-m-d H:i:s'));
-  }
-
-  /**
-   * ===========================================================================
-   * Month tests.
-   * ===========================================================================
-   */
-  public function testStartOfMonth() {
-    $date = new Chronos\ChronosDateTime("2014-01-11 23:00:00");
-    $date->startOfMonth();
-    $this->assertEquals("2014-01-01 00:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testEndOfMonth() {
-    $date = new Chronos\ChronosDateTime("2014-01-11 23:00:00");
-    $date->endOfMonth();
-    $this->assertEquals("2014-01-31 23:59:59", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testStartOfPreviousMonth() {
-    $date = new Chronos\ChronosDateTime("2014-01-11 23:00:00");
-    $date->startOfPreviousMonth();
-    $this->assertEquals("2013-12-01 00:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testEndOfPreviousMonth() {
-    $date = new Chronos\ChronosDateTime("2014-01-11 23:00:00");
-    $date->endOfPreviousMonth();
-    $this->assertEquals("2013-12-31 23:59:59", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testStartOfNextMonth() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:00:00");
-    $date->startOfNextMonth();
-    $this->assertEquals("2014-02-01 00:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testEndOfNextMonth() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:00:00");
-    $date->endOfNextMonth();
-    $this->assertEquals("2014-02-28 23:59:59", $date->format('Y-m-d H:i:s'));
-  }
-
-  /**
-   * ===========================================================================
-   * Year tests.
-   * ===========================================================================
-   */
-  public function testPreviousYear() {
-    $date = new Chronos\ChronosDateTime("2014-01-11 23:00:00");
-    $date->previousYear();
-    $this->assertEquals("2013-01-11 23:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testNextYear() {
-    $date = new Chronos\ChronosDateTime("2014-01-11 23:00:00");
-    $date->nextYear();
-    $this->assertEquals("2015-01-11 23:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testStartOfDayPreviousYear() {
-    $date = new Chronos\ChronosDateTime("2014-01-11 23:00:00");
-    $date->startOfDayPreviousYear();
-    $this->assertEquals("2013-01-11 00:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testEndOfDayPreviousYear() {
-    $date = new Chronos\ChronosDateTime("2014-01-11 23:00:00");
-    $date->endOfDayPreviousYear();
-    $this->assertEquals("2013-01-11 23:59:59", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testStartOfDayNextYear() {
-    $date = new Chronos\ChronosDateTime("2014-01-11 23:00:00");
-    $date->startOfDayNextYear();
-    $this->assertEquals("2015-01-11 00:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testEndOfDayNextYear() {
-    $date = new Chronos\ChronosDateTime("2014-01-11 23:00:00");
-    $date->endOfDayNextYear();
-    $this->assertEquals("2015-01-11 23:59:59", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testStartOfYear() {
-    $date = new Chronos\ChronosDateTime("2014-01-11 23:00:00");
-    $date->startOfYear();
-    $this->assertEquals("2014-01-01 00:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testEndOfYear() {
-    $date = new Chronos\ChronosDateTime("2014-01-11 23:00:00");
-    $date->endOfYear();
-    $this->assertEquals("2014-12-31 23:59:59", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testStartOfPreviousYear() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:00:00");
-    $date->startOfPreviousYear();
-    $this->assertEquals("2013-01-01 00:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testEndOfPreviousYear() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:00:00");
-    $date->endOfPreviousYear();
-    $this->assertEquals("2013-12-31 23:59:59", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testStartOfNextYear() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:00:00");
-    $date->startOfNextYear();
-    $this->assertEquals("2015-01-01 00:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testEndOfNextYear() {
-    $date = new Chronos\ChronosDateTime("2014-01-01 23:00:00");
-    $date->endOfNextYear();
-    $this->assertEquals("2015-12-31 23:59:59", $date->format('Y-m-d H:i:s'));
-  }
-
-  /**
-   * ===========================================================================
-   * Week tests.
-   * ===========================================================================
-   */
-  public function testPreviousWeek() {
-    $date = new \Chronos\ChronosDateTime("2015-03-15 23:00:00");
-    $date->previousWeek();
-    $this->assertEquals("2015-03-08 23:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testNextWeek() {
-    $date = new \Chronos\ChronosDateTime("2015-03-15 23:00:00");
-    $date->nextWeek();
-    $this->assertEquals("2015-03-22 23:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testStartOfDayPreviousWeek() {
-    $date = new \Chronos\ChronosDateTime("2015-03-15 23:00:00");
-    $date->startOfDayPreviousWeek();
-    $this->assertEquals("2015-03-08 00:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testEndOfDayPreviousWeek() {
-    $date = new \Chronos\ChronosDateTime("2015-03-15 23:00:00");
-    $date->endOfDayPreviousWeek();
-    $this->assertEquals("2015-03-08 23:59:59", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testStartOfDayNextWeek() {
-    $date = new \Chronos\ChronosDateTime("2015-03-15 23:00:00");
-    $date->startOfDayNextWeek();
-    $this->assertEquals("2015-03-22 00:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testEndOfDayNextWeek() {
-    $date = new \Chronos\ChronosDateTime("2015-03-15 23:00:00");
-    $date->endOfDayNextWeek();
-    $this->assertEquals("2015-03-22 23:59:59", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testStartOfFirstDayOfWeek() {
-    $date = new \Chronos\ChronosDateTime("2015-03-15 23:00:00");
-    $date->startOfFirstDayOfWeek();
-    $this->assertEquals("2015-03-09 00:00:00", $date->format('Y-m-d H:i:s'));
-
-    $date = new \Chronos\ChronosDateTime("2015-03-16 23:00:00");
-    $date->startOfFirstDayOfWeek();
-    $this->assertEquals("2015-03-16 00:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testEndOfLastDayOfWeek() {
-    $date = new \Chronos\ChronosDateTime("2015-03-15 23:00:00");
-    $date->endOfLastDayOfWeek();
-    $this->assertEquals("2015-03-15 23:59:59", $date->format('Y-m-d H:i:s'));
-
-    $date = new \Chronos\ChronosDateTime("2015-03-16 23:00:00");
-    $date->endOfLastDayOfWeek();
-    $this->assertEquals("2015-03-22 23:59:59", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testStartOfFirstDayOfPreviousWeek() {
-    $date = new \Chronos\ChronosDateTime("2015-03-15 23:00:00");
-    $date->startOfFirstDayOfPreviousWeek();
-    $this->assertEquals("2015-03-02 00:00:00", $date->format('Y-m-d H:i:s'));
-
-    $date = new \Chronos\ChronosDateTime("2015-03-16 23:00:00");
-    $date->startOfFirstDayOfPreviousWeek();
-    $this->assertEquals("2015-03-09 00:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testEndOfLastDayOfPreviousWeek() {
-    $date = new \Chronos\ChronosDateTime("2015-03-15 23:00:00");
-    $date->endOfLastDayOfPreviousWeek();
-    $this->assertEquals("2015-03-08 23:59:59", $date->format('Y-m-d H:i:s'));
-
-    $date = new \Chronos\ChronosDateTime("2015-03-16 23:00:00");
-    $date->endOfLastDayOfPreviousWeek();
-    $this->assertEquals("2015-03-15 23:59:59", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testStartOfFirstDayOfNextWeek() {
-    $date = new \Chronos\ChronosDateTime("2015-03-15 23:00:00");
-    $date->startOfFirstDayOfNextWeek();
-    $this->assertEquals("2015-03-16 00:00:00", $date->format('Y-m-d H:i:s'));
-
-    $date = new \Chronos\ChronosDateTime("2015-03-16 23:00:00");
-    $date->startOfFirstDayOfNextWeek();
-    $this->assertEquals("2015-03-23 00:00:00", $date->format('Y-m-d H:i:s'));
-  }
-
-  public function testEndOfLastDayOfNextWeek() {
-    $date = new \Chronos\ChronosDateTime("2015-03-15 23:00:00");
-    $date->endOfLastDayOfNextWeek();
-    $this->assertEquals("2015-03-22 23:59:59", $date->format('Y-m-d H:i:s'));
-
-    $date = new \Chronos\ChronosDateTime("2015-03-16 23:00:00");
-    $date->endOfLastDayOfNextWeek();
-    $this->assertEquals("2015-03-29 23:59:59", $date->format('Y-m-d H:i:s'));
-  }
-
-  /*
-   * ===========================================================================
-   * Misc tests.
-   * ===========================================================================
-   */
-  public function testConvertDateTime() {
-    $date = new DateTime(
-      '2015-03-23 00:00:00', new DateTimeZone('Africa/Johannesburg')
-    );
-    $chronos_date = \Chronos\ChronosDateTime::convertToChronosDateTime($date);
-    $this->assertEquals($date->getTimezone(), $chronos_date->getTimezone());
-    $this->assertEquals($date->getTimestamp(), $chronos_date->getTimestamp());
-    $this->assertEquals(
-      $date->format('Y-m-d H:i:s'), $chronos_date->format('Y-m-d H:i:s')
-    );
-  }
-
-  public function testValidateDate() {
-    $valid = \Chronos\ChronosDateTime::validateDate('2012-02-30 12:12:12');
-    $this->assertFalse($valid);
-    $valid = \Chronos\ChronosDateTime::validateDate('14:77', 'H:i');
-    $this->assertFalse($valid);
-  }
+    /**
+     * @return array[]
+     */
+    public function setDefaultPrintFormatDataProvider() : array
+    {
+        return [
+            ['2015-03-16 23:00:00', ChronosDateTime::DATE_MYSQL],
+            ['Mon, 16 Mar 2015 23:00:00 +0000', ChronosDateTime::RSS],
+        ];
+    }
 }
